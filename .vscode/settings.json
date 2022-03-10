@@ -1,0 +1,6 @@
+{
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-action.json": "file:///home/ronit/docker-tut/project-3/.github/workflows/deploy.yml",
+    "https://json.schemastore.org/github-workflow.json": "file:///home/ronit/docker-tut/project-3/.github/workflows/deploy.yaml"
+  }
+}
