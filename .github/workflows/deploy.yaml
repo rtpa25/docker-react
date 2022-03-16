@@ -8,12 +8,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    #the first set of steps help starting up the docker container which containes all the code for the react proejct and runs all the tests in dev env
       - uses: actions/checkout@v2
       - run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
       - run: docker build -t rtpa25/docker-react -f Dockerfile.dev .
       - run: docker run -e CI=true rtpa25/docker-react npm test
+      
+    #this step generates a build directory which has the build and bundled up code
       - name: Generate deployment package
-      - run: zip -r deploy.zip . -x '*.git*'
+        run: zip -r deploy.zip . -x '*.git*'
+      
+    #this step helps deploying the bundled code to EB
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v20
         with:
