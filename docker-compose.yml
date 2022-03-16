@@ -7,13 +7,14 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - /app/node_modules #this is for the sake of bookmarking the node modules
+      - /app/node_modules #this is for the sake of bookmarking the node modules and avoid mapping it with anything
       - .:/app
   tests:
     build: 
       context: .
       dockerfile: Dockerfile.dev
+      #volumes are basically refferencing to certain files in develiompent that change continusoly
     volumes:
       - /app/node_modules
       - .:/app
-    command: ["npm", "run", "test"]
+    command: ["npm", "run", "test"] #when this container or service starts up the command meentioned here will run inside the container and we will not have access to the standart in and staandart out, to achive that we need to attach directly to the container
