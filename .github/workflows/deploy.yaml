@@ -19,6 +19,7 @@ jobs:
         run: zip -r deploy.zip . -x '*.git*'
       
     #this step helps deploying the bundled code to EB
+    #just trying to get the fresh logs
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v20
         with:
